@@ -1,5 +1,6 @@
 package com.example.healthreminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void water(View view) {
+        Intent intent=new Intent(this,NotifyWater.class);
+        startActivity(intent);
         Toast.makeText(this, "Water layout is in progess", Toast.LENGTH_SHORT).show();
     }
 
