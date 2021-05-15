@@ -27,6 +27,7 @@ tools:context=".MainActivity">
         android:background="@color/blue">
 
         <androidx.cardview.widget.CardView
+            android:onClick="medicine"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             app:cardCornerRadius="15dp"
@@ -48,7 +49,7 @@ tools:context=".MainActivity">
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/Medicine"
+                    android:src="@drawable/medicine"
                     android:id="@+id/Medicine"/>
 
                 <TextView
@@ -64,6 +65,7 @@ tools:context=".MainActivity">
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:onClick="water"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             app:cardCornerRadius="15dp"
@@ -85,7 +87,7 @@ tools:context=".MainActivity">
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/Water"
+                    android:src="@drawable/water"
                     android:id="@+id/Water"/>
 
                 <TextView
@@ -95,11 +97,12 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Water"
-                    android:textSize="30sp"
+                    android:textSize="30sp"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:onClick="food"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             app:cardCornerRadius="15dp"
@@ -121,7 +124,7 @@ tools:context=".MainActivity">
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/Food"
+                    android:src="@drawable/food"
                     android:id="@+id/Food"/>
 
                 <TextView
@@ -131,11 +134,12 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Food"
-                    android:textSize="30sp"
+                    android:textSize="30sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:onClick="exercise"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             app:cardCornerRadius="15dp"
@@ -157,7 +161,7 @@ tools:context=".MainActivity">
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/Exercise"
+                    android:src="@drawable/exercise"
                     android:id="@+id/Exercise"/>
 
                 <TextView
@@ -167,7 +171,7 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Exercise"
-                    android:textSize="30sp"
+                    android:textSize="30sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
