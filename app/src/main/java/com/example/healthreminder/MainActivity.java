@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     public void water(View view) {
         Intent intent=new Intent(this,NotifyWater.class);
         startActivity(intent);
-        Toast.makeText(this, "Water layout is in progess", Toast.LENGTH_SHORT).show();
     }
 
     public void food(View view) {

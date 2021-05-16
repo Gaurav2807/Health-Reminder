@@ -10,6 +10,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -33,20 +35,21 @@ public class NotifyWater extends AppCompatActivity {
     Bitmap mybitmap;
     Drawable myImage;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify_water);
 
-        myImage= ResourcesCompat.getDrawable(getResources(),R.drawable.water,null);
-        mybitmap=((BitmapDrawable) myImage).getBitmap();
+        init();
 
         notification = new NotificationCompat.Builder(this, Channel_Id);
         notification.setAutoCancel(true);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-
+        showProgress();
         incrementProgress();
 
        //scheduleNotification();
@@ -54,11 +57,40 @@ public class NotifyWater extends AppCompatActivity {
 
     }
 
+    public void init(){
+        //Image for notificaton
+        myImage= ResourcesCompat.getDrawable(getResources(),R.drawable.water,null);
+        mybitmap=((BitmapDrawable) myImage).getBitmap();
+
+        //Progressbar
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        //SharedPreferances
+        sharedPreferences=getSharedPreferences("progressinfo",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+
+    }
+    public void showProgress(){
+        //Implementation Incomplete
+
+        editor.putInt("Progress",progressStatus);
+        editor.apply();
+        progressBar.setProgress(progressStatus);
+    }
+
     public void incrementProgress(){
-        if(progressStatus<100){
-            progressStatus+=10;
+        progressStatus=sharedPreferences.getInt("progress",0);
+        if(progressStatus<50){
+            progressStatus+=5;
+        }
+        else{
+            progressStatus=0;
         }
         progressBar.setProgress(progressStatus);
+        editor.putInt("progress",progressStatus);
+        editor.apply();
+
 
         if(progressStatus==100){
             //add poppers;
@@ -85,6 +117,13 @@ public class NotifyWater extends AppCompatActivity {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nm.notify(uniqueID, notification.build());
 
+        incrementProgress();
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        assert alarmManager != null;
+        alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
+
 
     }
     private void createNotificationChannel() {
@@ -97,6 +136,8 @@ public class NotifyWater extends AppCompatActivity {
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+
+
         }
     }
 
