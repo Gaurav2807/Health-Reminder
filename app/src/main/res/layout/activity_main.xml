@@ -50,7 +50,8 @@ tools:context=".MainActivity">
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/medicine"
-                    android:id="@+id/Medicine"/>
+                    android:id="@+id/Medicine"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,7 +60,7 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Medicines"
-                    android:textSize="25sp"/>
+                    android:textSize="20sp"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -87,6 +88,7 @@ tools:context=".MainActivity">
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/water"
                     android:id="@+id/Water"/>
 
@@ -97,7 +99,7 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Water"
-                    android:textSize="25sp"/>
+                    android:textSize="20sp"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -125,6 +127,7 @@ tools:context=".MainActivity">
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/food"
+                    android:layout_centerVertical="true"
                     android:id="@+id/Food"/>
 
                 <TextView
@@ -134,7 +137,7 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Food"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -162,6 +165,7 @@ tools:context=".MainActivity">
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/exercise"
+                    android:layout_centerVertical="true"
                     android:id="@+id/Exercise"/>
 
                 <TextView
@@ -171,7 +175,7 @@ tools:context=".MainActivity">
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="200dp"
                     android:text="Exercise"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
