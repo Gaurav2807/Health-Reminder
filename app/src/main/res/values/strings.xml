@@ -4,4 +4,6 @@
     <string name="food">Food</string>
     <string name="water">Water</string>
     <string name="medicines">Medicines</string>
+    <string name="channel_name">Channel Name</string>
+    <string name="channel_description">channel Description</string>
 </resources>

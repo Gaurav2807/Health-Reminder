@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void water(View view) {
-        Toast.makeText(this, "Water layout is in progess", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,NotifyWater.class);
+        startActivity(intent);
     }
 
     public void food(View view) {
