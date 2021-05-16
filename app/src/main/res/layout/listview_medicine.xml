@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/medicineNAME"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="MEDICINE NAME"></EditText>
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/dosage"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="NUMBER OF DOSAGE"></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FIRST DOSE AT:"
+            android:textColor="@color/black"
+            android:textSize="24dp"></TextView>
+
+        <EditText
+            android:id="@+id/hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="24dp"
+            android:hint="hh"></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/black"
+            android:textSize="24dp"></TextView>
+
+        <EditText
+            android:id="@+id/minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="24dp"
+            android:hint="mm"></EditText>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/setAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET ALARM"></Button>
+
+
+    <TextView
+        android:id="@+id/submit"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="24dp"></TextView>
+
+
+</LinearLayout>
