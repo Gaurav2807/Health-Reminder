@@ -1,5 +1,9 @@
 package com.example.healthreminder;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.res.ResourcesCompat;
+
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -16,17 +20,15 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.res.ResourcesCompat;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class NotifyWater extends AppCompatActivity {
     private ProgressBar progressBar;
     private int progressStatus = 0;
-    Handler handler=new Handler();
+   // Handler handler=new Handler();
     NotificationCompat.Builder notification;
     private static final int uniqueID = 40001;
     private static final String Channel_Id = "abc";
@@ -35,6 +37,7 @@ public class NotifyWater extends AppCompatActivity {
     Bitmap mybitmap;
     Drawable myImage;
     ImageView imageView;
+    TextView myText;
 
 
     SharedPreferences sharedPreferences;
@@ -52,7 +55,7 @@ public class NotifyWater extends AppCompatActivity {
         notification.setAutoCancel(true);
 
         showProgress();
-        incrementProgress();
+        //incrementProgress();
 
        //scheduleNotification();
        //notifyUser();
@@ -73,14 +76,16 @@ public class NotifyWater extends AppCompatActivity {
 
         //ImageView
         imageView=(ImageView)findViewById(R.id.image);
+        myText=(TextView)findViewById(R.id.text);
 
     }
     public void showProgress(){
         //Implementation Incomplete
 
-        editor.putInt("Progress",progressStatus);
-        editor.apply();
+        progressStatus=sharedPreferences.getInt("progress",0);
         progressBar.setProgress(progressStatus);
+
+        myText.setText("You drank "+Integer.toString(progressStatus)+"% water of your daily qouta.");
     }
 
     public void incrementProgress(){
@@ -101,6 +106,7 @@ public class NotifyWater extends AppCompatActivity {
             imageView.setVisibility(View.INVISIBLE);
 
         }
+        myText.setText("You drank "+Integer.toString(progressStatus)+"% water of your daily qouta.");
 
         progressBar.setProgress(progressStatus);
         editor.putInt("progress",progressStatus);
@@ -113,7 +119,7 @@ public class NotifyWater extends AppCompatActivity {
     public void notifyUser(){
         notification.setContentText("It's water time.");
         notification.setContentTitle("Hydrate Yourself");
-        notification.setSmallIcon(R.drawable.water);
+        notification.setSmallIcon(R.drawable.water_girl);
         notification.setTicker("Ticker");
         notification.setWhen(System.currentTimeMillis());
         notification.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(mybitmap));
