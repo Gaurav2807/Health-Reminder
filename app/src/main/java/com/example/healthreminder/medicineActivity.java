@@ -26,6 +26,8 @@ public class medicineActivity extends AppCompatActivity {
     Button addButton,setAlarm;
     TextView text;
     int hour;
+    boolean addMedicine = true;
+    boolean setALARM = true;////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,13 @@ public class medicineActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addView();
+                if(addMedicine==true) {
+                    addView();
+                    addMedicine = false;
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "SUBMIT THE LIST", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -56,21 +64,29 @@ public class medicineActivity extends AppCompatActivity {
        setAlarm.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               int dose = Integer.valueOf(e2.getText().toString());
-                hour = Integer.valueOf(e3.getText().toString());
-               int min = Integer.valueOf(e4.getText().toString());
-               int noOfDose = 24/dose;
-               Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-                   intent.putExtra(AlarmClock.EXTRA_HOUR,hour);
-                   intent.putExtra(AlarmClock.EXTRA_MINUTES,min);
-                   intent.putExtra(AlarmClock.EXTRA_MESSAGE,e1.getText().toString());
-                   intent.putExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION,noOfDose);
-                   intent.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
-                   intent.putExtra(AlarmClock.EXTRA_VIBRATE,true);
-                   if(hour<24 && hour>0 && min <60 && min >0){
+               if (TextUtils.isEmpty(e3.getText().toString()) || TextUtils.isEmpty(e4.getText().toString())) {
+                   Toast.makeText(getBaseContext(), "ENTER TIME", Toast.LENGTH_SHORT).show();
+               } else {
+                   setALARM = false;
+
+                   int dose = Integer.valueOf(e2.getText().toString());
+                   hour = Integer.valueOf(e3.getText().toString());
+                   int min = Integer.valueOf(e4.getText().toString());
+                   int noOfDose = 24 / dose;
+                   Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                   intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
+                   intent.putExtra(AlarmClock.EXTRA_MINUTES, min);
+                   intent.putExtra(AlarmClock.EXTRA_MESSAGE, e1.getText().toString());
+                   intent.putExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, noOfDose);
+                   intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                   intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
+                   if (hour < 24 && hour > 0 && min < 60 && min > 0) {
                        startActivity(intent);
+                   } else {
+                       Toast.makeText(getBaseContext(), "ENTER IN RAILWAY TIME", Toast.LENGTH_LONG).show();
                    }
                }
+           }
        });
 
         text.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +96,8 @@ public class medicineActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Provide Full Details", Toast.LENGTH_SHORT).show();
                 }
                 else {
+
+                    addMedicine =true;
 
                     e1.setEnabled(false);
                     e2.setEnabled(false);
@@ -93,13 +111,18 @@ public class medicineActivity extends AppCompatActivity {
                     } else {
                         layout.removeView(layoutInflate);
                         Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-                        startActivity(intent);
+                        if(setALARM==false){
+                            setALARM = true;
+                            startActivity(intent);
+                        }
+
                     }
                 }
             }
         });
 
         layout.addView(layoutInflate);
+
 
     }
 
