@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ public class NotifyWater extends AppCompatActivity {
     private PendingIntent alarmIntent;
     Bitmap mybitmap;
     Drawable myImage;
+    ImageView imageView;
+
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -69,6 +72,8 @@ public class NotifyWater extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("progressinfo",MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
+        //ImageView
+        imageView=(ImageView)findViewById(R.id.image);
 
     }
     public void showProgress(){
@@ -81,20 +86,27 @@ public class NotifyWater extends AppCompatActivity {
 
     public void incrementProgress(){
         progressStatus=sharedPreferences.getInt("progress",0);
-        if(progressStatus<50){
-            progressStatus+=5;
+
+        if(progressStatus<100){
+            progressStatus+=10;
         }
-        else{
+
+        else {
             progressStatus=0;
         }
+        if(progressStatus==100){
+
+            imageView.setVisibility(View.VISIBLE);
+        }
+        else {
+            imageView.setVisibility(View.INVISIBLE);
+
+        }
+
         progressBar.setProgress(progressStatus);
         editor.putInt("progress",progressStatus);
         editor.apply();
 
-
-        if(progressStatus==100){
-            //add poppers;
-        }
 
     }
 
@@ -117,7 +129,7 @@ public class NotifyWater extends AppCompatActivity {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nm.notify(uniqueID, notification.build());
 
-        incrementProgress();
+       // incrementProgress();
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
