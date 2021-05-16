@@ -175,14 +175,7 @@ tools:context=".MainActivity">
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-
-
-
     </LinearLayout>
-
-
-
-
 
 </LinearLayout>
 
