@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void medicine(View view) {
-        Toast.makeText(this, "Medicine layout is in progess", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this , medicineActivity.class);
+        startActivity(intent);
     }
 
     public void water(View view) {
