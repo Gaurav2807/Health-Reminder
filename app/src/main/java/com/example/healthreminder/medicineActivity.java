@@ -56,21 +56,27 @@ public class medicineActivity extends AppCompatActivity {
        setAlarm.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               int dose = Integer.valueOf(e2.getText().toString());
-                hour = Integer.valueOf(e3.getText().toString());
-               int min = Integer.valueOf(e4.getText().toString());
-               int noOfDose = 24/dose;
-               Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-                   intent.putExtra(AlarmClock.EXTRA_HOUR,hour);
-                   intent.putExtra(AlarmClock.EXTRA_MINUTES,min);
-                   intent.putExtra(AlarmClock.EXTRA_MESSAGE,e1.getText().toString());
-                   intent.putExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION,noOfDose);
-                   intent.putExtra(AlarmClock.EXTRA_SKIP_UI,true);
-                   intent.putExtra(AlarmClock.EXTRA_VIBRATE,true);
-                   if(hour<24 && hour>0 && min <60 && min >0){
+               if (TextUtils.isEmpty(e3.getText().toString()) || TextUtils.isEmpty(e4.getText().toString())) {
+                   Toast.makeText(getBaseContext(), "ENTER TIME", Toast.LENGTH_SHORT).show();
+               } else {
+                   int dose = Integer.valueOf(e2.getText().toString());
+                   hour = Integer.valueOf(e3.getText().toString());
+                   int min = Integer.valueOf(e4.getText().toString());
+                   int noOfDose = 24 / dose;
+                   Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                   intent.putExtra(AlarmClock.EXTRA_HOUR, hour);
+                   intent.putExtra(AlarmClock.EXTRA_MINUTES, min);
+                   intent.putExtra(AlarmClock.EXTRA_MESSAGE, e1.getText().toString());
+                   intent.putExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, noOfDose);
+                   intent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                   intent.putExtra(AlarmClock.EXTRA_VIBRATE, true);
+                   if (hour < 24 && hour > 0 && min < 60 && min > 0) {
                        startActivity(intent);
+                   } else {
+                       Toast.makeText(getBaseContext(), "ENTER IN RAILWAY TIME", Toast.LENGTH_LONG).show();
                    }
                }
+           }
        });
 
         text.setOnClickListener(new View.OnClickListener() {
