@@ -5,6 +5,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -55,6 +57,8 @@ public class NotifyWater extends AppCompatActivity {
         notification.setAutoCancel(true);
 
         showProgress();
+
+        scheduleNotification(getNotification( "10 second delay" ) , 5000 ) ;
         //incrementProgress();
 
        //scheduleNotification();
@@ -134,12 +138,17 @@ public class NotifyWater extends AppCompatActivity {
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nm.notify(uniqueID, notification.build());
 
+        //scheduleNotification(getNotification( "5 second delay" ) , 5000 ) ;
+
        // incrementProgress();
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+
+
+     /*   AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
         alarmManager.setRepeating(
-                AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
+                AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);*/
 
 
     }
@@ -160,7 +169,7 @@ public class NotifyWater extends AppCompatActivity {
 
     public void scheduleNotification(){
         alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, NotifyWater.class);
+        Intent intent = new Intent(this, MyNotificationPublisher.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 
        // Set the alarm to start at 11:30 a.m.
@@ -171,6 +180,7 @@ public class NotifyWater extends AppCompatActivity {
 
            // setRepeating() lets you specify a precise custom interval--in this case,
            // 2 minutes.
+
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 1000 * 60 * 2, alarmIntent);
 
@@ -180,5 +190,32 @@ public class NotifyWater extends AppCompatActivity {
         notifyUser();
         incrementProgress();
         scheduleNotification();
+    }
+
+    private void scheduleNotification (Notification notification , int delay) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 36);
+
+        Intent notificationIntent = new Intent( this, NotifyWater. class ) ;
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION_ID , 1 ) ;
+        notificationIntent.putExtra(MyNotificationPublisher. NOTIFICATION , notification) ;
+        PendingIntent pendingIntent = PendingIntent. getBroadcast ( this, 0 , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT ) ;
+        long futureInMillis = SystemClock. elapsedRealtime () + delay ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context. ALARM_SERVICE ) ;
+        assert alarmManager != null;
+        //alarmManager.setRepeating(AlarmManager. ELAPSED_REALTIME_WAKEUP , futureInMillis ,delay, pendingIntent); ;
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                delay, pendingIntent);
+    }
+    private Notification getNotification (String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( this, Channel_Id) ;
+        builder.setContentText("It's water time.");
+        builder.setContentTitle("Hydrate Yourself");
+        builder.setSmallIcon(R.drawable.water_girl);
+        builder.setAutoCancel( true ) ;
+        builder.setChannelId( Channel_Id ) ;
+        return builder.build() ;
     }
 }

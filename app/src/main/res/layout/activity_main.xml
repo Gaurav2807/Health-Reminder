@@ -33,7 +33,7 @@ tools:context=".MainActivity">
             app:cardCornerRadius="15dp"
             android:layout_margin="10dp"
             android:elevation="4dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="@drawable/bg">
 
@@ -71,7 +71,7 @@ tools:context=".MainActivity">
             app:cardCornerRadius="15dp"
             android:layout_margin="10dp"
             android:elevation="4dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="@drawable/bg">
 
@@ -108,7 +108,7 @@ tools:context=".MainActivity">
             app:cardCornerRadius="15dp"
             android:layout_margin="10dp"
             android:elevation="4dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="@drawable/bg">
 
@@ -145,7 +145,7 @@ tools:context=".MainActivity">
             app:cardCornerRadius="15dp"
             android:layout_margin="10dp"
             android:elevation="4dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_width="match_parent"
             android:background="@drawable/bg">
 
