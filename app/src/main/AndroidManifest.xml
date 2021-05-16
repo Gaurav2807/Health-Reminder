@@ -14,21 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthReminder">
 
-        <activity android:name=".splash_screen" android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--        <activity android:name=".splash_screen" android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+<!--            android:screenOrientation="portrait">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity android:name=".MainActivity">
         </activity>
 
         <activity android:name=".medicineActivity">
+        </activity>
+        <activity android:name=".splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".NotifyWater" />
 
 
