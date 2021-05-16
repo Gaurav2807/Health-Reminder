@@ -26,6 +26,8 @@ public class medicineActivity extends AppCompatActivity {
     Button addButton,setAlarm;
     TextView text;
     int hour;
+    boolean addMedicine = true;
+    boolean setALARM = true;////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,13 @@ public class medicineActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addView();
+                if(addMedicine==true) {
+                    addView();
+                    addMedicine = false;
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "SUBMIT THE LIST", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -59,6 +67,8 @@ public class medicineActivity extends AppCompatActivity {
                if (TextUtils.isEmpty(e3.getText().toString()) || TextUtils.isEmpty(e4.getText().toString())) {
                    Toast.makeText(getBaseContext(), "ENTER TIME", Toast.LENGTH_SHORT).show();
                } else {
+                   setALARM = false;
+
                    int dose = Integer.valueOf(e2.getText().toString());
                    hour = Integer.valueOf(e3.getText().toString());
                    int min = Integer.valueOf(e4.getText().toString());
@@ -87,6 +97,8 @@ public class medicineActivity extends AppCompatActivity {
                 }
                 else {
 
+                    addMedicine =true;
+
                     e1.setEnabled(false);
                     e2.setEnabled(false);
                     e3.setEnabled(false);
@@ -99,13 +111,18 @@ public class medicineActivity extends AppCompatActivity {
                     } else {
                         layout.removeView(layoutInflate);
                         Intent intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-                        startActivity(intent);
+                        if(setALARM==false){
+                            setALARM = true;
+                            startActivity(intent);
+                        }
+
                     }
                 }
             }
         });
 
         layout.addView(layoutInflate);
+
 
     }
 
